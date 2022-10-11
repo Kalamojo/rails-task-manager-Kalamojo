@@ -1,6 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Tasks</h1>
+<%= link_to 'View All', tasks_path() %> -
+<%= link_to 'View Complete', tasks_path(Completed: true) %> -
+<%= link_to 'View Incomplete', tasks_path(Completed: false) %>
+
+<% if @filter == "completed" %>
+  <h1>Completed Tasks</h1>
+<% elsif @filter == "incomplete" %>
+  <h1>Incomplete Tasks</h1>
+<% else %>
+  <h1>Tasks</h1>
+<% end %>
 
 <div id="tasks">
   <% @tasks.each do |task| %>
