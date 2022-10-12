@@ -3,7 +3,15 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    if params[:completed] == "true"
+      @tasks = Task.where(completed: true)
+      @filter = "completed"
+    elsif params[:completed] == "false"
+      @tasks = Task.where(completed: false)
+      @filter = "incomplete"
+    else
+      @tasks = Task.all
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
